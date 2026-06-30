@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Myko — El Nexo</title>
+    <style>
+        :root {
+            --bg-base: #020202;
+            --bg-mid: #080808;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #111111;
+            --border: #1a1a1a;
+            --border-light: #2a2a2a;
+            --white: #ffffff;
+            --white-90: rgba(255, 255, 255, 0.90);
+            --white-60: rgba(255, 255, 255, 0.60);
+            --white-30: rgba(255, 255, 255, 0.30);
+            --white-10: rgba(255, 255, 255, 0.10);
+            --white-05: rgba(255, 255, 255, 0.05);
+            --accent: #ff0000;
+            --font-body: 'Helvetica Neue', 'Arial', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-glitch: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            background: #000;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--white-90);
+            font-family: var(--font-body);
+            font-weight: 300;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .cinema-grain {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.045;
+            pointer-events: none;
+            animation: noise-float 0.3s steps(4) infinite;
+        }
+
+        @keyframes noise-float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-1px, 1px);
+            }
+
+            50% {
+                transform: translate(1px, -1px);
+            }
+
+            75% {
+                transform: translate(-1px, -1px);
+            }
+        }
+
+        #boot-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            transition: transform 1.2s var(--ease-cinema), opacity 1.2s var(--ease-cinema);
+        }
+
+        #boot-screen.boot-exiting {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .boot-layout {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .boot-console {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--white-30);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--white-05);
+            padding-bottom: 15px;
+            animation: console-fade 0.5s ease infinite alternate;
+        }
+
+        @keyframes console-fade {
+            0% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .boot-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 120px;
+        }
+
+        .boot-glyph {
+            width: 70px;
+            height: 70px;
+            overflow: visible;
+        }
+
+        .boot-hex {
+            stroke-width: 0.75;
+            stroke-dasharray: 120;
+            stroke-dashoffset: 120;
+            animation: draw-hex-epic 2.2s cubic-bezier(0.7, 0, 0.2, 1) 0.2s forwards;
+        }
+
+        @keyframes draw-hex-epic {
+            0% {
+                stroke-dashoffset: 120;
+                fill: rgba(255, 255, 255, 0);
+            }
+
+            70% {
+                stroke-dashoffset: 0;
+                fill: rgba(255, 255, 255, 0);
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+                fill: rgba(255, 255, 255, 0.02);
+            }
+        }
+
+        .boot-dot {
+            opacity: 0;
+            animation: critical-pulse 3s var(--ease-cinema) 1.5s infinite;
+        }
+
+        @keyframes critical-pulse {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+                fill: var(--white);
+            }
+        }
+
+        .boot-scanline {
+            position: absolute;
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--white-60), transparent);
+            top: 50%;
+            opacity: 0;
+            animation: laser-sweep 2s ease-in-out infinite;
+        }
+
+        @keyframes laser-sweep {
+            0% {
+                transform: translateY(-40px);
+                opacity: 0;
+            }
+
+            30%,
+            70% {
+                opacity: 0.4;
+            }
+
+            100% {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+        }
+
+        .boot-metrics {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .metric-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-title {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--white-30);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .boot-progress-container {
+            width: 100%;
+            height: 1px;
+            background: var(--white-10);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .boot-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--white);
+            animation: advance-progress 4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+        }
+
+        @keyframes advance-progress {
+            0% {
+                width: 0%;
+            }
+
+            30% {
+                width: 45%;
+            }
+
+            43% {
+                width: 45%;
+            }
+
+            70% {
+                width: 88%;
+            }
+
+            90% {
+                width: 100%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .boot-status {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--white-30);
+            letter-spacing: 0.2em;
+            text-align: center;
+        }
+
+        .nexus-viewport {
+            z-index: 10;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 60px 40px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1.4s var(--ease-cinema), transform 1.4s var(--ease-cinema);
+        }
+
+        body.main-revealed .nexus-viewport {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .myko-card {
+            position: relative;
+            height: 440px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--white-90);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 45px 40px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.6s var(--ease-cinema), background-color 0.6s var(--ease-cinema), box-shadow 0.8s var(--ease-cinema);
+        }
+
+        .myko-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.05), transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .myko-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--border-light);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        .myko-card:hover::before {
+            opacity: 1;
+        }
+
+        .myko-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--white-30), transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s var(--ease-cinema);
+            z-index: 2;
+        }
+
+        .myko-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .meta-index {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--white-30);
+            letter-spacing: 0.15em;
+            transition: color 0.4s ease;
+            z-index: 2;
+        }
+
+        .myko-card:hover .meta-index {
+            color: var(--accent);
+        }
+
+        .card-body {
+            z-index: 2;
+            margin-bottom: auto;
+            margin-top: 40px;
+        }
+
+        .card-title {
+            font-family: var(--font-body);
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            line-height: 1.65;
+            color: var(--white-60);
+            font-weight: 300;
+            transition: color 0.4s ease;
+        }
+
+        .myko-card:hover .card-desc {
+            color: var(--white-90);
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--white-30);
+            border-top: 1px solid var(--white-05);
+            padding-top: 25px;
+            transition: color 0.4s ease, border-color 0.4s ease;
+            z-index: 2;
+        }
+
+        .myko-card:hover .card-footer {
+            color: var(--white);
+            border-color: var(--white-10);
+        }
+
+        .card-arrow {
+            font-size: 0.9rem;
+            transition: transform 0.4s var(--ease-cinema);
+        }
+
+        .myko-card:hover .card-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Responsivo */
+        @media (max-width: 960px) {
+            .nexus-viewport {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                padding: 40px 20px;
+                gap: 20px;
+            }
+
+            .myko-card {
+                height: 380px;
+                padding: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cinema-grain" aria-hidden="true"></div>
+
+    <div id="boot-screen" aria-hidden="true">
+        <div class="boot-layout">
+
+            <div class="boot-console">
+                <span>Myko // Derechos reservados Myko - v1.0.0.0</span>
+                <span id="boot-timestamp">Pantalla de carga.myko</span>
+            </div>
+
+            <div class="boot-center">
+                <div class="boot-scanline"></div>
+                <svg class="boot-glyph" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4 L42 14 L42 34 L24 44 L6 34 L6 14 Z" stroke="white" stroke-width="1" fill="none"
+                        class="boot-hex" />
+                    <circle cx="24" cy="24" r="2.5" fill="white" class="boot-dot" />
+                </svg>
+            </div>
+
+            <div class="boot-metrics">
+                <div class="metric-block">
+                    <span class="metric-title">Indice de red</span>
+                    <span class="metric-value" id="node-counter">000</span>
+                </div>
+                <div class="metric-block" style="text-align: right;">
+                    <span class="metric-title">Progreso</span>
+                    <span class="metric-value" id="percent-counter">0%</span>
+                </div>
+            </div>
+
+            <div class="boot-progress-container">
+                <div class="boot-progress-fill" id="progress-bar"></div>
+            </div>
+
+            <p class="boot-status" id="status-string">Cargando...</p>
+        </div>
+    </div>
+
+    <main id="main-content" class="nexus-viewport">
+
+        <a href="equipo.html" class="myko-card">
+            <div class="meta-index">01</div>
+            <div class="card-body">
+                <h2 class="card-title">Revisar Equipo</h2>
+                <p class="card-desc">Accede a los perfiles de los participantes de Myko.</p>
+            </div>
+            <div class="card-footer">
+                <span>CONECTAR</span>
+                <span class="card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="proyecto.html" class="myko-card">
+            <div class="meta-index">02</div>
+            <div class="card-body">
+                <h2 class="card-title">Proyectos</h2>
+                <p class="card-desc">Explora las herramientas de código abierto desarrolladas por Myko.</p>
+            </div>
+            <div class="card-footer">
+                <span>REPOSITORIO</span>
+                <span class="card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="saber.html" class="myko-card">
+            <div class="meta-index">03</div>
+            <div class="card-body">
+                <h2 class="card-title">Saber más...</h2>
+                <p class="card-desc">El manifiesto de soberanía digital. Conoce la vid del nuevo mundo.</p>
+            </div>
+            <div class="card-footer">
+                <span>MANIFIESTO</span>
+                <span class="card-arrow">→</span>
+            </div>
+        </a>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            const percentCounter = document.getElementById('percent-counter');
+            const nodeCounter = document.getElementById('node-counter');
+            const statusString = document.getElementById('status-string');
+
+            let progress = 0;
+            const statusPhrases = [
+                "Actualizando repositorios...",
+                "Actualizando información...",
+                "Sifrando información...",
+                "Enviando datos a los servidores...",
+                "Aceptado..."
+            ];
+
+            const interval = setInterval(() => {
+                if (progress < 100) {
+                    let increment = Math.floor(Math.random() * 4) + 1;
+                    if (progress > 40 && progress < 55) increment = 0.5;
+
+                    progress = Math.min(progress + increment, 100);
+                    percentCounter.innerText = `${Math.floor(progress)}%`;
+
+                    nodeCounter.innerText = String(Math.floor(progress * 7.82)).padStart(3, '0');
+
+                    const phraseIndex = Math.min(Math.floor(progress / 21), statusPhrases.length - 1);
+                    statusString.innerText = statusPhrases[phraseIndex];
+                } else {
+                    clearInterval(interval);
+                    triggerSystemUnlock();
+                }
+            }, 35);
+
+            function triggerSystemUnlock() {
+                setTimeout(() => {
+                    bootScreen.classList.add('boot-exiting');
+                    document.body.classList.add('main-revealed');
+
+                    setTimeout(() => {
+                        bootScreen.style.display = 'none';
+                    }, 1200);
+                }, 400);
+            }
+
+            const cards = document.querySelectorAll('.myko-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
