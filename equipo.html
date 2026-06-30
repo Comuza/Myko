@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Myko — Conoce al equipo detrás del software libre y cinematográfico." />
+    <title>Myko — Equipo Principal</title>
+</head>
+
+<body>
+
+    <div class="cinema-grain" aria-hidden="true"></div>
+
+    <main id="main-content">
+
+        <nav class="site-nav scrolled" id="site-nav">
+            <a href="index.html" class="nav-logo" aria-label="Myko inicio">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+                    <path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z" stroke="white" stroke-width="1.2" fill="none" />
+                    <circle cx="12" cy="12" r="1.8" fill="white" />
+                </svg>
+                <span>MYKO</span>
+            </a>
+            <ul class="nav-links" role="list">
+                <li><a href="index.html#pillars">Pilares</a></li>
+                <li><a href="index.html#manifesto">Manifiesto</a></li>
+                <li><a href="equipo.html" style="color: #ffffff;">Equipo</a></li>
+                <li><a href="index.html#cta" class="nav-cta">Beta →</a></li>
+            </ul>
+        </nav>
+
+        <section id="team" class="section team-page-section">
+            <div class="section-eyebrow">Quiénes somos</div>
+            <h2 class="section-title">Equipo principal</h2>
+            <p class="section-subtitle">Haz clic en la tarjeta de cualquier integrante para explorar su terminal
+                personal.</p>
+
+            <div class="team-grid">
+
+                <a href="comuza.html" class="team-card-link">
+                    <article class="team-card">
+                        <div class="team-avatar">
+                            <img src="comuza.jpeg" alt="Foto de @Comuza" class="avatar-img">
+                            <div class="team-avatar-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-handle">@Comuza</h3>
+                            <p class="team-role">Fundador · Diseño de Sistemas</p>
+                            <ul class="team-tags" role="list">
+                                <li>Arquitectura</li>
+                                <li>Filosofía</li>
+                                <li>Gestión</li>
+                            </ul>
+                        </div>
+                        <div class="team-number" aria-hidden="true">01</div>
+                    </article>
+                </a>
+
+                <a href="tomas.html" class="team-card-link">
+                    <article class="team-card">
+                        <div class="team-avatar">
+                            <img src="tomas.jpg" alt="Foto de @Tomas" class="avatar-img">
+                            <div class="team-avatar-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-handle">@Tomas</h3>
+                            <p class="team-role">Co-creator</p>
+                            <ul class="team-tags" role="list">
+                                <li>Aprender de cada idea</li>
+                                <li>Aportar su grano de arena</li>
+                            </ul>
+                        </div>
+                        <div class="team-number" aria-hidden="true">02</div>
+                    </article>
+                </a>
+
+                <a href="fran.html" class="team-card-link">
+                    <article class="team-card">
+                        <div class="team-avatar">
+                            <img src="fran.png" alt="Foto de @Fran" class="avatar-img">
+                            <div class="team-avatar-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-handle">@Fran</h3>
+                            <p class="team-role">Tester oficial</p>
+                            <ul class="team-tags" role="list">
+                                <li>Asegurar un producto óptimo</li>
+                                <li>Amar cada línea de código</li>
+                            </ul>
+                        </div>
+                        <div class="team-number" aria-hidden="true">03</div>
+                    </article>
+                </a>
+
+                <a href="shirleypoy.html" class="team-card-link">
+                    <article class="team-card">
+                        <div class="team-avatar">
+                            <img src="shirley.png" alt="Foto de @ShirleyPoy" class="avatar-img">
+                            <div class="team-avatar-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-handle">@ShirleyPoy</h3>
+                            <p class="team-role">Organizador & Tester oficial</p>
+                            <ul class="team-tags" role="list">
+                                <li>Organizador</li>
+                                <li>Ideas creativas</li>
+                            </ul>
+                        </div>
+                        <div class="team-number" aria-hidden="true">04</div>
+                    </article>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <style>
+        :root {
+            --bg-base: #020202;
+            --bg-mid: #080808;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #111111;
+            --border: #1a1a1a;
+            --border-light: #2a2a2a;
+            --white: #ffffff;
+            --white-90: rgba(255, 255, 255, 0.90);
+            --white-60: rgba(255, 255, 255, 0.60);
+            --white-30: rgba(255, 255, 255, 0.30);
+            --white-10: rgba(255, 255, 255, 0.10);
+            --white-05: rgba(255, 255, 255, 0.05);
+            --accent: #ff0000;
+            --font-body: 'Helvetica Neue', 'Arial', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --text-xs: 0.68rem;
+            --text-sm: 0.82rem;
+            --text-xl: 1.5rem;
+            --text-2xl: 2rem;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--white-90);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .cinema-grain {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3P%3Cfilter id='noiseFilter'%3P%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3P%3C/filter%3P%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3P%3C/svg%3P");
+            opacity: 0.035;
+            pointer-events: none;
+            animation: noise-float 0.5s steps(5) infinite;
+        }
+
+        @keyframes noise-float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            20% {
+                transform: translate(1px, -1px);
+            }
+
+            40% {
+                transform: translate(-1px, 1px);
+            }
+
+            60% {
+                transform: translate(1px, 1px);
+            }
+
+            80% {
+                transform: translate(-1px, -1px);
+            }
+        }
+
+        /* Navegación */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px clamp(20px, 6vw, 90px);
+            background: rgba(2, 2, 2, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(15px, 3vw, 40px);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            color: var(--white-60);
+            letter-spacing: 0.15em;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        /* Sección de Equipo */
+        .team-page-section {
+            padding: 160px clamp(20px, 8vw, 120px) 100px;
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.3em;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: var(--text-sm);
+            color: var(--white-60);
+            margin-bottom: 60px;
+        }
+
+        /* Grid interactivo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+        }
+
+        .team-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .team-card-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: clamp(25px, 4vw, 45px);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            cursor: pointer;
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+
+        .team-card-link:hover .team-card {
+            background: var(--bg-card-hover);
+            border-color: var(--border-light);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transition: top 0.6s var(--ease-in-out);
+            pointer-events: none;
+        }
+
+        .team-card-link:hover .team-card::before {
+            top: 150%;
+        }
+
+        .team-number {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-family: var(--font-mono);
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            transition: color 0.4s ease, transform 0.4s var(--ease-out-expo);
+        }
+
+        .team-card-link:hover .team-number {
+            color: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+        }
+
+        .team-avatar {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.4s ease;
+        }
+
+        .team-card-link:hover .team-avatar {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.4s var(--ease-out-expo);
+        }
+
+        .team-card-link:hover .avatar-img {
+            transform: scale(1.1);
+        }
+
+        .team-avatar-dots {
+            position: absolute;
+            inset: -5px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+            background-size: 8px 8px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .team-card-link:hover .team-avatar-dots {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .team-handle {
+            font-size: var(--text-xl);
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: -0.01em;
+        }
+
+        .team-role {
+            font-size: var(--text-sm);
+            color: var(--white-60);
+            font-family: var(--font-mono);
+            letter-spacing: 0.08em;
+            margin-top: 5px;
+        }
+
+        .team-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+            list-style: none;
+        }
+
+        .team-tags li {
+            font-size: var(--text-xs);
+            color: var(--white-30);
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .team-tags li::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--border-light);
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 50px clamp(20px, 8vw, 120px);
+            background: var(--bg-base);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+        }
+
+        .footer-copy {
+            font-size: var(--text-xs);
+            color: var(--white-30);
+            font-family: var(--font-mono);
+            flex: 1;
+            text-align: center;
+            min-width: 250px;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            color: var(--white-30);
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white-90);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .footer-copy {
+                order: 2;
+            }
+
+            .footer-links {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
+
+</body>
+
+</html>
